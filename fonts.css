@@ -1,0 +1,47 @@
+/* ==============================================
+   FONT FACE DECLARATIONS
+   Separate from Tailwind to ensure reliable loading
+   ============================================== */
+
+@font-face {
+  font-family: 'Anyfin Sans';
+  src: url('./assets/fonts/AnyfinSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Anyfin Sans';
+  src: url('./assets/fonts/AnyfinSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Anyfin Sans';
+  src: url('./assets/fonts/AnyfinSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neulis Sans';
+  src: url('./assets/fonts/neulis-sans-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neulis Sans';
+  src: url('./assets/fonts/neulis-sans-medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neulis Sans';
+  src: url('./assets/fonts/Neulis-Sans-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
