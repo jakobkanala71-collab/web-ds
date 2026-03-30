@@ -88,4 +88,3 @@ All tokens are in `tokens.css` under `@theme`. Components use them via Tailwind 
 - Buttons currently have `onClick` handlers but no `href`/link support. Adding an `href` prop that renders an `<a>` instead of `<button>` is straightforward.
 - `Icon` uses Vite's `import.meta.glob` to load SVGs. If migrating to a different bundler, this is the one piece that needs adaptation.
 - More sections and composites are coming — this is the initial set for the SCHUFA page.
-# web-ds
