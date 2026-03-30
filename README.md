@@ -8,7 +8,7 @@ This system will run alongside the existing Next.js + Styled Components stack. N
 
 - **Tailwind CSS v4** — uses `@theme`, `@utility` syntax (not compatible with v3)
 - **React 18+**
-- **Vite** (or any bundler that supports `import.meta.glob` for the Icon primitive)
+- **Bundler** (any bundler that supports `import.meta.glob` or alternative for the Icon primitive)
 
 ## Setup
 
