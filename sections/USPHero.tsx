@@ -1,9 +1,10 @@
-import { Text, Container, Divider } from '../primitives';
-import { useInView } from '../hooks/useInView';
-import { ScrollEntrance, IconCircle } from '../composites';
+import type { ReactNode } from "react";
+import { Text, Container, Divider } from "../primitives";
+import { useInView } from "../hooks/useInView";
+import { ScrollEntrance, IconCircle } from "../composites";
 
 type USP = {
-  icon: string;
+  icon: ReactNode;
   title: string;
   description: string;
 };
@@ -23,9 +24,17 @@ export default function USPHero({ usps }: USPHeroProps) {
           {usps.map((usp, i) => (
             <ScrollEntrance key={i} show={isInView} delay={100 + i * 80}>
               <div className="flex flex-col">
-                <IconCircle icon={usp.icon} variant="muted" iconColor="dark" />
-                <div className="mt-4"><Text variant="p-neulis" color="primary">{usp.title}</Text></div>
-                <div className="mt-1"><Text variant="p-base" color="body">{usp.description}</Text></div>
+                <IconCircle icon={usp.icon} variant="muted" />
+                <div className="mt-4">
+                  <Text variant="p-neulis" color="primary">
+                    {usp.title}
+                  </Text>
+                </div>
+                <div className="mt-1">
+                  <Text variant="p-base" color="body">
+                    {usp.description}
+                  </Text>
+                </div>
               </div>
             </ScrollEntrance>
           ))}

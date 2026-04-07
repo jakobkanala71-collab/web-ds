@@ -1,0 +1,24 @@
+{
+  "name": "web-ds",
+  "version": "1.0.0",
+  "description": "Token-driven component library for new Anyfin web pages. Built with React + Tailwind CSS v4. All visual decisions live in CSS custom properties — components reference tokens, never hardcoded values.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakobkanala71-collab/web-ds.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jakobkanala71-collab/web-ds/issues"
+  },
+  "homepage": "https://github.com/jakobkanala71-collab/web-ds#readme",
+  "dependencies": {
+    "react-icons": "^5.6.0"
+  }
+}

@@ -1,1 +1,1 @@
-export { useInView } from './useInView';
+export { useInView } from "./useInView";

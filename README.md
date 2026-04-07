@@ -2,55 +2,76 @@
 
 Token-driven component library for new Anyfin web pages. Built with React + Tailwind CSS v4. All visual decisions live in CSS custom properties — components reference tokens, never hardcoded values.
 
-This system will run alongside the existing Next.js + Styled Components stack. New pages use this system; existing pages remain unchanged.
+This system runs alongside the existing Next.js + Styled Components stack. New pages use this system; existing pages remain unchanged.
 
 ## Requirements
 
 - **Tailwind CSS v4** — uses `@theme`, `@utility` syntax (not compatible with v3)
 - **React 18+**
-- **Bundler** (any bundler that supports `import.meta.glob` or alternative for the Icon primitive)
+- **Next.js 14+** — `Image.tsx` uses Next.js `<Image>` component
+- **react-icons** — icons are passed as `ReactNode` props, not string names
 
 ## Setup
 
 1. Add Tailwind v4 to the Next.js project
-2. Import both CSS files in your entry point:
+2. Import `tokens.css` globally (e.g. in `_app.tsx`):
    ```ts
-   import './fonts.css';
-   import './tokens.css';
+   import '../design-system/tokens.css';
    ```
-3. Place `assets/fonts/` where the `fonts.css` `@font-face` declarations can resolve them
+3. Install dependencies:
+   ```bash
+   npm install react-icons
+   ```
+
+Fonts are loaded globally in `_document.tsx` — no per-page setup needed.
 
 ## Structure
 
 ```
 ├── tokens.css              ← Tokens, gradients, glass utilities, typography, animations
-├── fonts.css               ← @font-face declarations (Anyfin Sans, Neulis Sans)
-├── assets/
-│   ├── fonts/              ← .woff2 / .woff files
-│   ├── icons/              ← SVG icons (loaded by Icon primitive via import.meta.glob)
-│   └── images/             ← Section images
 ├── hooks/
 │   └── useInView.ts        ← Intersection Observer hook
 ├── primitives/             ← Base building blocks
 │   ├── Text.tsx            ← Typography (h1–h7, p-xl–p-small)
 │   ├── Button.tsx          ← primary, ghost, secondary variants
 │   ├── Container.tsx       ← Max-width wrapper with padding
-│   ├── Image.tsx           ← Responsive image with radius/aspect tokens
-│   ├── Icon.tsx            ← SVG loader from assets/icons
+│   ├── Image.tsx           ← Next.js <Image> wrapper with DS props
+│   ├── Icon.tsx            ← Icon wrapper (accepts src URL)
 │   └── Divider.tsx         ← Horizontal rule
 ├── composites/             ← Multi-primitive compositions
 │   ├── ScrollEntrance.tsx  ← Scroll-triggered animations
 │   ├── ResponsiveHeading.tsx ← Mobile/desktop heading sizes
-│   └── IconCircle.tsx      ← Circular icon container
-├── sections/               ← Full-width page sections
-│   ├── InsetHero.tsx       ← Hero with inset card overlay
-│   ├── USPHero.tsx         ← Horizontal USP strip
-│   ├── TextImage.tsx       ← Text + image, 4 layout variants
-│   ├── StepFlowMini.tsx    ← Numbered step flow
-│   └── FaqAccordion.tsx    ← Expandable Q&A
-└── pages/
-    └── Schufa-9.tsx        ← SCHUFA landing page (reference implementation)
+│   └── IconCircle.tsx      ← Circular icon container (accepts ReactNode)
+└── sections/               ← Full-width page sections
+    ├── InsetHero.tsx       ← Hero with inset card overlay
+    ├── USPHero.tsx         ← Horizontal USP strip
+    ├── TextImage.tsx       ← Text + image, 4 layout variants
+    ├── StepFlowMini.tsx    ← Numbered step flow
+    └── FaqAccordion.tsx    ← Expandable Q&A
 ```
+
+## Icons
+
+Icons come from `react-icons` (Feather set recommended for consistency). They are passed as `ReactNode` props — never as string names.
+
+```tsx
+import { FiUsers, FiShield, FiHeart, FiSmartphone } from "react-icons/fi";
+
+<Button label="Download" iconElement={<FiSmartphone size={18} />} />
+<IconCircle icon={<FiHeart size={20} />} variant="muted" />
+```
+
+Browse available icons: https://react-icons.github.io/react-icons/
+
+## Images
+
+The design system does **not** bundle any images. All images are passed as CDN URL strings. Upload via Strapi CMS, which publishes to `https://cdn.anyfin.com/cms/...`. The `Image` component uses Next.js `<Image>` under the hood for automatic WebP conversion, lazy loading, and responsive sizing.
+
+## Fonts
+
+- `--font-heading`: Neulis Sans (headings) — loaded from Adobe Typekit
+- `--font-body`: Anyfin Sans (body text) — loaded from `cdn.anyfin.com`
+- The `Text` component applies the correct font automatically based on `variant`.
 
 ## Token system
 
@@ -85,6 +106,5 @@ All tokens are in `tokens.css` under `@theme`. Components use them via Tailwind 
 
 ## Notes
 
-- Buttons currently have `onClick` handlers but no `href`/link support. Adding an `href` prop that renders an `<a>` instead of `<button>` is straightforward.
-- `Icon` uses Vite's `import.meta.glob` to load SVGs. If migrating to a different bundler, this is the one piece that needs adaptation.
-- More sections and composites are coming — this is the initial set for the SCHUFA page.
+- **Sections are added incrementally** — only the sections listed above (`InsetHero`, `USPHero`, `TextImage`, `StepFlowMini`, `FaqAccordion`) are finished and in use. More will be added as they are completed.
+- Buttons have `onClick` handlers but no `href`/link support. Adding an `href` prop that renders an `<a>` instead of `<button>` is straightforward.

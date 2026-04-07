@@ -514,18 +514,3 @@
   border-color: var(--color-accent);
 }
 
-/* ==============================================
-   BASE STYLES
-   ============================================== */
-
-body {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.4375rem;
-  color: var(--color-text-body);
-  background-color: var(--color-background);
-  font-feature-settings: 'salt' on, 'ss01' on;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
